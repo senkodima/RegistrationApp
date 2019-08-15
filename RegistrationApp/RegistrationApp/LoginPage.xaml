@@ -25,9 +25,9 @@
                  VerticalOptions="End">
         <Button Text="LOGIN"
                 Style="{StaticResource buttonStyle}"
-                Clicked="OnLoginButtonClicked" />
+                Command="{Binding LoginCommand}" />
         <Button Text="SIGN UP"
                 Style="{StaticResource buttonStyle}"
-                Clicked="OnSignUpButtonClicked" />
+                Command="{Binding SignUpCommand}" />
     </StackLayout>
 </ContentPage>

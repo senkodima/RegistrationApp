@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RegistrationApp.Models;
-
+﻿using RegistrationApp.ViewModels;
 using Xamarin.Forms;
 
 namespace RegistrationApp
@@ -11,7 +8,8 @@ namespace RegistrationApp
         public RegistrationPage()
         {
             InitializeComponent();
-        }
 
+            BindingContext = new SignUpViewModel();
+        }
     }
 }

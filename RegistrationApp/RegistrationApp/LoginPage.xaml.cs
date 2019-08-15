@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RegistrationApp.Models;
-
+﻿using RegistrationApp.ViewModels;
 using Xamarin.Forms;
 
 namespace RegistrationApp
@@ -11,16 +8,8 @@ namespace RegistrationApp
         public LoginPage()
         {
             InitializeComponent();
-        }
 
-        async void OnLoginButtonClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        async void OnSignUpButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RegistrationPage());
+            BindingContext = new LoginViewModel();
         }
     }
 }
