@@ -3,12 +3,12 @@ using Xamarin.Forms;
 
 namespace RegistrationApp.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class StartUpViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; }
         public ICommand SignUpCommand { get; }
 
-        public LoginViewModel()
+        public StartUpViewModel()
         {
             LoginCommand = new Command(OnLoginCommand);
             SignUpCommand = new Command(OnSignUpCommand);
@@ -22,7 +22,7 @@ namespace RegistrationApp.ViewModels
         private async void OnSignUpCommand()
         {
             System.Diagnostics.Debug.WriteLine("SignUp");
-            await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage());
         }
     }
 }

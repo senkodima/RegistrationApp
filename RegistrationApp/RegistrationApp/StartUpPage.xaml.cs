@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace RegistrationApp
 {
-    public partial class LoginPage : ContentPage
+    public partial class StartUpPage : ContentPage
     {
-        public LoginPage()
+        public StartUpPage()
         {
             InitializeComponent();
 
-            BindingContext = new LoginViewModel();
+            BindingContext = new StartUpViewModel();
         }
     }
 }
