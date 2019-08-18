@@ -10,7 +10,7 @@ namespace RegistrationApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new StartUpPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

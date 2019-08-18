@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace RegistrationApp
 {
-    public partial class SignUpPage : ContentPage
+    public partial class RegistrationPage : ContentPage
     {
-        public SignUpPage()
+        public RegistrationPage()
         {
             InitializeComponent();
 
