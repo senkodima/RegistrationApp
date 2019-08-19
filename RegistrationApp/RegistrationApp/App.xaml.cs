@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace RegistrationApp
 {
@@ -10,7 +8,7 @@ namespace RegistrationApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new StartUpPage());
         }
 
         protected override void OnStart()
