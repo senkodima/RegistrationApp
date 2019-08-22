@@ -14,9 +14,10 @@ namespace RegistrationApp.ViewModels
             SignUpCommand = new Command(OnSignUpCommand);
         }
 
-        private void OnSignInCommand()
+        private async void OnSignInCommand()
         {
             System.Diagnostics.Debug.WriteLine("SignIn");
+            await Application.Current.MainPage.Navigation.PushAsync(new SignInPage());
         }
 
         private async void OnSignUpCommand()
