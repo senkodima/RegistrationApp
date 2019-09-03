@@ -1,4 +1,6 @@
 ﻿using System.Windows.Input;
+using RegistrationApp.Validations;
+using RegistrationApp.Validations.Rules;
 using Xamarin.Forms;
 
 namespace RegistrationApp.ViewModels
@@ -7,8 +9,8 @@ namespace RegistrationApp.ViewModels
     {
         public ICommand ForgotPasswordCommand { get; }
 
-        private string _email;
-        public string Email
+        private ValidatableObject<string> _email;
+        public ValidatableObject<string> Email
         {
             get { return _email; }
             set { SetField(ref _email, value); }
@@ -17,11 +19,25 @@ namespace RegistrationApp.ViewModels
         public ForgotPasswordViewModel()
         {
             ForgotPasswordCommand = new Command(OnForgotPasswordCommand);
+
+            Email = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new EmailRule()
+                }
+            };
         }
 
         private void OnForgotPasswordCommand()
         {
             System.Diagnostics.Debug.WriteLine("Forgot password");
+
+            if (!Email.Validate())
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", Email.ErrorsMessages[0], "OK");
+            }
         }
     }
 }

@@ -25,10 +25,10 @@
         <StackLayout Margin="10,35,10,35"
                  VerticalOptions="End">
         <Entry Placeholder="EMAIL"
-               Text="{Binding Email}"
+               Text="{Binding Email.Value}"
                Margin="10,0,10,10"/>
         <Entry Placeholder="Password"
-               Text="{Binding Password}"
+               Text="{Binding Password.Value}"
                IsPassword="True"
                Margin="10,0,10,20"/>
         <Button Text="LOGIN"

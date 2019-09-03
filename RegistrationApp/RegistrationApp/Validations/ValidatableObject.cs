@@ -39,8 +39,6 @@ namespace RegistrationApp.Validations
 
         public bool Validate()
         {
-            ErrorsMessages.Clear();
-
             var errors = ValidationsRules.Where(r => !r.Check(Value)).Select(r => r.ValidationMessage);
             ErrorsMessages = errors.ToList();
             IsValid = !ErrorsMessages.Any();

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Windows.Input;
 using RegistrationApp.Pages;
+using RegistrationApp.Validations;
+using RegistrationApp.Validations.Rules;
 using Xamarin.Forms;
 
 namespace RegistrationApp.ViewModels
@@ -10,15 +12,15 @@ namespace RegistrationApp.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand ForgotPasswordCommand { get; }
 
-        private string _email;
-        public string Email
+        private ValidatableObject<string> _email;
+        public ValidatableObject<string> Email
         {
             get { return _email; }
             set { SetField(ref _email, value); }
         }
 
-        private string _password;
-        public string Password
+        private ValidatableObject<string> _password;
+        public ValidatableObject<string> Password
         {
             get { return _password; }
             set { SetField(ref _password, value); }
@@ -28,11 +30,43 @@ namespace RegistrationApp.ViewModels
         {
             LoginCommand = new Command(OnLoginCommand);
             ForgotPasswordCommand = new Command(OnForgotPasswordCommand);
+
+            Email = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new EmailRule()
+                }
+            };
+
+            Password = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new PasswordRule()
+                }
+            };
         }
 
         private void OnLoginCommand()
         {
             System.Diagnostics.Debug.WriteLine("Login");
+
+            if (!Email.Validate() || !Password.Validate())
+            {
+                var errorMessage = string.Empty;
+                if (Email.ErrorsMessages.Any())
+                {
+                    errorMessage = Email.ErrorsMessages.First();
+                }
+                else
+                {
+                    errorMessage = Password.ErrorsMessages.First();
+                }
+                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+            }
         }
 
         private async void OnForgotPasswordCommand()
