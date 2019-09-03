@@ -1,5 +1,4 @@
-﻿//using System.Linq; /* Для ToList()*/
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Input;
 using RegistrationApp.Validations;
 using RegistrationApp.Validations.Rules;
@@ -74,14 +73,6 @@ namespace RegistrationApp.ViewModels
         private async void OnAddPhoto()
         {
             System.Diagnostics.Debug.WriteLine("Add photo");
-
-            /* CLEAR NAVIGATION STACK */
-            //var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-            //foreach (var page in pages)
-            //{
-            //    if (page.GetType() != typeof(StartUpPage))
-            //        Application.Current.MainPage.Navigation.RemovePage(page);
-            //}
         }
 
         private void OnCreateAccauntCommand()
