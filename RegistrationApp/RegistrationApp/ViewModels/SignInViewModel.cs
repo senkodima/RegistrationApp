@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows.Input;
 using RegistrationApp.Pages;
 using Xamarin.Forms;
 
@@ -37,14 +38,16 @@ namespace RegistrationApp.ViewModels
         private async void OnForgotPasswordCommand()
         {
             System.Diagnostics.Debug.WriteLine("Forgot password");
+
             await Application.Current.MainPage.Navigation.PushAsync(new ForgotPasswordPage());
-            /* CLEAR NAVIGATION STACK */
-            //var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-            //foreach (var page in pages)
-            //{
-            //    if (page.GetType() != typeof(StartUpPage))
-            //        Application.Current.MainPage.Navigation.RemovePage(page);
-            //}
+
+            var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+            foreach (var page in pages)
+            {
+                if (page != Application.Current.MainPage.Navigation.NavigationStack.First()
+                    && page != Application.Current.MainPage.Navigation.NavigationStack.Last())
+                    Application.Current.MainPage.Navigation.RemovePage(page);
+            }
         }
     }
 }
