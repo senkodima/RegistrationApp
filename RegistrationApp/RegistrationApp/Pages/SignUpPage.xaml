@@ -12,7 +12,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -40,7 +40,7 @@
                     Grid.Row="1" />
 
             <Entry Placeholder="EMAIL"
-                   Text="{Binding Email}"
+                   Text="{Binding Email.Value}"
                    Grid.ColumnSpan="2"
                    Grid.Row="2" />
 
@@ -55,7 +55,7 @@
                    Grid.Row="3" />
 
             <Entry Placeholder="PASSWORD"
-                   Text="{Binding Password}"
+                   Text="{Binding Password.Value}"
                    IsPassword="True"
                    Grid.ColumnSpan="2"
                    Grid.Row="4" />

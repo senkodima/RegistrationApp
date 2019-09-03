@@ -1,4 +1,8 @@
-﻿using System.Windows.Input;
+﻿//using System.Linq; /* Для ToList()*/
+using System.Linq;
+using System.Windows.Input;
+using RegistrationApp.Validations;
+using RegistrationApp.Validations.Rules;
 using Xamarin.Forms;
 
 namespace RegistrationApp.ViewModels
@@ -8,8 +12,8 @@ namespace RegistrationApp.ViewModels
         public ICommand AddPhotoCommand { get; }
         public ICommand CreateAccauntCommand { get; }
 
-        private string _email;
-        public string Email
+        private ValidatableObject<string> _email;
+        public ValidatableObject<string> Email
         {
             get { return _email; }
             set { SetField(ref _email, value); }
@@ -29,8 +33,8 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _lastName, value); }
         }
 
-        private string _password;
-        public string Password
+        private ValidatableObject<string> _password;
+        public ValidatableObject<string> Password
         {
             get { return _password; }
             set { SetField(ref _password, value); }
@@ -47,16 +51,57 @@ namespace RegistrationApp.ViewModels
         {
             AddPhotoCommand = new Command(OnAddPhoto);
             CreateAccauntCommand = new Command(OnCreateAccauntCommand);
+
+            Email = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new EmailRule()
+                }
+            };
+
+            Password = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new PasswordRule()
+                }
+            };
         }
 
-        private void OnAddPhoto()
+        private async void OnAddPhoto()
         {
             System.Diagnostics.Debug.WriteLine("Add photo");
+
+            /* CLEAR NAVIGATION STACK */
+            //var pages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+            //foreach (var page in pages)
+            //{
+            //    if (page.GetType() != typeof(StartUpPage))
+            //        Application.Current.MainPage.Navigation.RemovePage(page);
+            //}
         }
 
         private void OnCreateAccauntCommand()
         {
             System.Diagnostics.Debug.WriteLine("Create accaunt");
+
+            if (!Email.Validate() || !Password.Validate())
+            {
+                var errorMessage = string.Empty;
+                if (Email.ErrorsMessages.Any())
+                {
+                    errorMessage = Email.ErrorsMessages.First();
+                }
+                else
+                {
+                    errorMessage = Password.ErrorsMessages.First();
+                }
+                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+            }
         }
+
     }
 }
