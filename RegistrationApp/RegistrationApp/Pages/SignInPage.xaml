@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RegistrationApp.SignInPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle"
+                   TargetType="Button">
+                <Setter Property="Margin"
+                        Value="5" />
+                <Setter Property="BorderColor"
+                        Value="Gray" />
+                <Setter Property="BorderRadius"
+                        Value="5" />
+                <Setter Property="BorderWidth"
+                        Value="2" />
+                <Setter Property="TextColor"
+                        Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10,35,10,35"
+                 VerticalOptions="End">
+        <Entry Placeholder="EMAIL"
+               Text="{Binding Email.Value}"
+               Margin="10,0,10,10"/>
+        <Entry Placeholder="Password"
+               Text="{Binding Password.Value}"
+               IsPassword="True"
+               Margin="10,0,10,20"/>
+        <Button Text="LOGIN"
+                Style="{StaticResource buttonStyle}"
+                Command="{Binding LoginCommand}" />
+        <Button Text="Forgot password"
+                FontSize="Small"
+                Command="{Binding ForgotPasswordCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
