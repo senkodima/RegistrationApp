@@ -131,6 +131,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Image.jpg" />
+    <BundleResource Include="Resources\user_icon.jpg" />
+    <BundleResource Include="Resources\user.png" />
   </ItemGroup>
 </Project>
