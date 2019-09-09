@@ -5,7 +5,7 @@ namespace RegistrationApp.Validations.Rules
 {
     public class PasswordRule : IValidationRule<string>
     {
-        private readonly Regex passwordRegex = new Regex(@"^(?=.*[a - z])(?=.*[A - Z])(?=.*\d).{7,11}$");
+        private readonly Regex passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,11}$");
 
         public string ValidationMessage { get; set; }
 
