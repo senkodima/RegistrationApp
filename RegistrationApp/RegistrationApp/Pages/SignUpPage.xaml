@@ -17,6 +17,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -60,10 +61,16 @@
                    Grid.ColumnSpan="2"
                    Grid.Row="4" />
 
+            <Entry Placeholder="CONFIRM PASSWORD"
+                   Text="{Binding ConfirmPassword.Value}"
+                   IsPassword="True"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="5" />
+
             <Entry Placeholder="PHONE"
                    Text="{Binding Phone}"
                    Grid.ColumnSpan="2"
-                   Grid.Row="5" />
+                   Grid.Row="6" />
 
             <Button
                 Text="CREATE ACCOUNT"
@@ -72,7 +79,7 @@
                 VerticalOptions="End"
                 Command="{Binding CreateAccauntCommand}"
                 Grid.ColumnSpan="2"
-                Grid.Row="6" />
+                Grid.Row="7" />
 
         </Grid>
     </ContentPage.Content>
