@@ -105,17 +105,3 @@ namespace RegistrationApp.ViewModels
         }
     }
 }
-
-
-
-public class Test
-{
-
-    public static bool TestFunc(int x) => x == 0;
-
-    public static bool TestFunc1(int c)
-    {
-        return c == 0;
-    }
-
-}
