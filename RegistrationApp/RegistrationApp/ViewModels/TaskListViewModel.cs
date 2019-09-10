@@ -1,9 +1,11 @@
-﻿namespace RegistrationApp.ViewModels
+﻿using System.Collections.Generic;
+
+namespace RegistrationApp.ViewModels
 {
     public class TaskListViewModel : BaseViewModel
     {
-        private string[] _taskList;
-        public string[] TaskList
+        private List<string> _taskList;
+        public List<string> TaskList
         {
             get { return _taskList; }
             set { SetField(ref _taskList, value); }
@@ -11,7 +13,7 @@
 
         public TaskListViewModel()
         {
-            TaskList = new string[] { "value 1", "value 2", "value 3", "value 4", "value 5" };
+            TaskList = new List<string> { "value 1", "value 2", "value 3", "value 4", "value 5" };
         }
     }
 }
