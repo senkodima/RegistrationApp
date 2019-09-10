@@ -50,7 +50,7 @@ namespace RegistrationApp.ViewModels
             };
         }
 
-        private void OnLoginCommand()
+        private async void OnLoginCommand()
         {
             System.Diagnostics.Debug.WriteLine("Login");
 
@@ -66,7 +66,10 @@ namespace RegistrationApp.ViewModels
                     errorMessage = Password.ErrorsMessages.First();
                 }
                 Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                return;
             }
+
+            await Application.Current.MainPage.Navigation.PushAsync(new TaskListPage());
         }
 
         private async void OnForgotPasswordCommand()
