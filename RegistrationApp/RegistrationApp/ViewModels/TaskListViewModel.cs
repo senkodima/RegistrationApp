@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RegistrationApp.Models;
 
 namespace RegistrationApp.ViewModels
 {
@@ -11,9 +12,15 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _taskList, value); }
         }
 
+        User user;
+
         public TaskListViewModel()
         {
-            TaskList = new List<string> { "value 1", "value 2", "value 3", "value 4", "value 5" };
+            user = new User()
+            {
+                TaskList = new List<string> { "value 1", "value 2", "value 3", "value 4", "value 5" }
+            };
+            TaskList = user.TaskList;
         }
     }
 }
