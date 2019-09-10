@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Input;
+using RegistrationApp.Models;
 using RegistrationApp.Pages;
 using RegistrationApp.Validations;
 using RegistrationApp.Validations.Rules;
@@ -26,13 +27,22 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _password, value); }
         }
 
+        User user;
+
         public SignInViewModel()
         {
             LoginCommand = new Command(OnLoginCommand);
             ForgotPasswordCommand = new Command(OnForgotPasswordCommand);
 
+            user = new User()
+            {
+                Email = "test@test.com",
+                Password = "123qweASD"
+            };
+
             Email = new ValidatableObject<string>
             {
+                Value = user.Email, // FOR TEST
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
@@ -42,6 +52,7 @@ namespace RegistrationApp.ViewModels
 
             Password = new ValidatableObject<string>
             {
+                Value = user.Password, // FOR TEST
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
@@ -50,7 +61,7 @@ namespace RegistrationApp.ViewModels
             };
         }
 
-        private void OnLoginCommand()
+        private async void OnLoginCommand()
         {
             System.Diagnostics.Debug.WriteLine("Login");
 
@@ -66,7 +77,16 @@ namespace RegistrationApp.ViewModels
                     errorMessage = Password.ErrorsMessages.First();
                 }
                 Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                return;
             }
+
+            if (!Email.Value.Equals(user.Email) || !Password.Value.Equals(user.Password))
+            {
+                Application.Current.MainPage.DisplayAlert("ERROR", "BAD INPUT", "OK");
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(new TaskListPage());
         }
 
         private async void OnForgotPasswordCommand()
@@ -84,4 +104,18 @@ namespace RegistrationApp.ViewModels
             }
         }
     }
+}
+
+
+
+public class Test
+{
+
+    public static bool TestFunc(int x) => x == 0;
+
+    public static bool TestFunc1(int c)
+    {
+        return c == 0;
+    }
+
 }
