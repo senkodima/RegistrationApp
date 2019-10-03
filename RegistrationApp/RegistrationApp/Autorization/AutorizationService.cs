@@ -3,11 +3,10 @@ using System.Linq;
 using RegistrationApp.Models;
 using Xamarin.Forms;
 
-namespace RegistrationApp.Autorisation
+namespace RegistrationApp.Autorization
 {
-    public static class AutorisationService
+    public static class AutorizationService
     {
-        private static User _currentUser;
 
         public static bool CheckEmailUniqueness(string value)
         {
@@ -29,6 +28,6 @@ namespace RegistrationApp.Autorisation
             }
         }
 
-        
+
     }
 }

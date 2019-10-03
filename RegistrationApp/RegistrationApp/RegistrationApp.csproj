@@ -23,6 +23,6 @@
     <Folder Include="Validations\" />
     <Folder Include="Validations\Rules\" />
     <Folder Include="Data\" />
-    <Folder Include="Autorisation\" />
+    <Folder Include="Autorization\" />
   </ItemGroup>
 </Project>
