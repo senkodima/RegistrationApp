@@ -26,7 +26,7 @@
                      VerticalOptions="Center"
                      HorizontalOptions="Center">
         <Label Text="TEST"/>
-        
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

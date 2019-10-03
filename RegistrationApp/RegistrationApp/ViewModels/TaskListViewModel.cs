@@ -1,11 +1,12 @@
-﻿using System;
+﻿using RegistrationApp.Models;
+
 namespace RegistrationApp.ViewModels
 {
     public class TaskListViewModel : BaseViewModel
     {
-        public TaskListViewModel()
+        public TaskListViewModel(User user)
         {
-
+            
         }
     }
 }

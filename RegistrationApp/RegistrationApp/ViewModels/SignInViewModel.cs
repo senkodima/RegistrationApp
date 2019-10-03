@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Input;
+using RegistrationApp.Autorization;
 using RegistrationApp.Models;
 using RegistrationApp.Pages;
 using RegistrationApp.Validations;
@@ -27,22 +28,13 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _password, value); }
         }
 
-        User user;
-
         public SignInViewModel()
         {
             LoginCommand = new Command(OnLoginCommand);
             ForgotPasswordCommand = new Command(OnForgotPasswordCommand);
 
-            user = new User()
-            {
-                Email = "test@test.com",
-                Password = "123qweASD"
-            };
-
             Email = new ValidatableObject<string>
             {
-                Value = user.Email, // FOR TEST
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
@@ -52,7 +44,6 @@ namespace RegistrationApp.ViewModels
 
             Password = new ValidatableObject<string>
             {
-                Value = user.Password, // FOR TEST
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
@@ -76,17 +67,13 @@ namespace RegistrationApp.ViewModels
                 {
                     errorMessage = Password.ErrorsMessages.First();
                 }
-                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                await Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
                 return;
             }
 
-            if (!Email.Value.Equals(user.Email) || !Password.Value.Equals(user.Password))
-            {
-                Application.Current.MainPage.DisplayAlert("ERROR", "BAD INPUT", "OK");
-                return;
-            }
+            var _newUser = new User(Email.Value, Password.Value);
 
-            await Application.Current.MainPage.Navigation.PushAsync(new TaskListPage());
+            AutorizationService.SignInUserAsync(_newUser);
         }
 
         private async void OnForgotPasswordCommand()
