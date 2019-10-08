@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Input;
+using RegistrationApp.Autorization;
+using RegistrationApp.Models;
 using RegistrationApp.Pages;
 using RegistrationApp.Validations;
 using RegistrationApp.Validations.Rules;
@@ -50,7 +52,7 @@ namespace RegistrationApp.ViewModels
             };
         }
 
-        private void OnLoginCommand()
+        private async void OnLoginCommand()
         {
             System.Diagnostics.Debug.WriteLine("Login");
 
@@ -65,8 +67,13 @@ namespace RegistrationApp.ViewModels
                 {
                     errorMessage = Password.ErrorsMessages.First();
                 }
-                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                await Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                return;
             }
+
+            var _newUser = new User(Email.Value, Password.Value);
+
+            AutorizationService.SignInUserAsync(_newUser);
         }
 
         private async void OnForgotPasswordCommand()

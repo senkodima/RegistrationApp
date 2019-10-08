@@ -19,7 +19,6 @@ namespace RegistrationApp.Models
         [OneToMany]
         public List<UserTask> Tasks { get; set; }
 
-
         public User() { }
 
         public User(string Email, string FirstName, string LastName, string Password, string Phone)
@@ -29,6 +28,12 @@ namespace RegistrationApp.Models
             this.LastName = LastName;
             this.Password = Password;
             this.Phone = Phone;
+        }
+
+        public User(string Email, string Password)
+        {
+            this.Email = Email;
+            this.Password = Password;
         }
 
         #region FOR DEBUG
