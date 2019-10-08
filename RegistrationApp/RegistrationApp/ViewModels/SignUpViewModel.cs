@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using RegistrationApp.Autorisation;
+using RegistrationApp.Autorization;
 using RegistrationApp.Models;
 using RegistrationApp.Validations;
 using RegistrationApp.Validations.Rules;
@@ -145,7 +145,7 @@ namespace RegistrationApp.ViewModels
 
             var _newUser = new User(Email.Value, FirstName, LastName, Password.Value, Phone);
 
-            AutorisationService.SignUpUserAsync(_newUser);
+            AutorizationService.SignUpUserAsync(_newUser);
         }
 
     }
