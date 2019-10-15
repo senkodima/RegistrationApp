@@ -1,9 +1,27 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.IO;
+using RegistrationApp.Data;
+using Xamarin.Forms;
 
 namespace RegistrationApp
 {
     public partial class App : Application
     {
+        private static UserDatabase _userDatabase;
+
+        public static UserDatabase UserDatabase
+        {
+            get
+            {
+                if (_userDatabase == null)
+                {
+                    _userDatabase = new UserDatabase(Path.Combine(Environment.GetFolderPath
+                        (Environment.SpecialFolder.LocalApplicationData), "User.db3"));
+                }
+                return _userDatabase;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
