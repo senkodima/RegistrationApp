@@ -39,6 +39,13 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _password, value); }
         }
 
+        private ValidatableObject<string> _confirmPassword;
+        public ValidatableObject<string> ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set { SetField(ref _confirmPassword, value); }
+        }
+
         private string _phone;
         public string Phone
         {
@@ -68,6 +75,16 @@ namespace RegistrationApp.ViewModels
                     new PasswordRule()
                 }
             };
+
+            ConfirmPassword = new ValidatableObject<string>
+            {
+                ValidationsRules =
+                {
+                    new IsNotNullOrEmptyRule(),
+                    new PasswordRule(),
+                    new ConfirmPasswordRule(() => Password.Value)
+                }
+            };
         }
 
         private async void OnAddPhoto()
@@ -79,19 +96,24 @@ namespace RegistrationApp.ViewModels
         {
             System.Diagnostics.Debug.WriteLine("Create accaunt");
 
-            if (!Email.Validate() || !Password.Validate())
+            if (!Email.Validate() || !Password.Validate() || !ConfirmPassword.Validate())
             {
                 var errorMessage = string.Empty;
                 if (Email.ErrorsMessages.Any())
                 {
                     errorMessage = Email.ErrorsMessages.First();
                 }
-                else
+                else if (Password.ErrorsMessages.Any())
                 {
                     errorMessage = Password.ErrorsMessages.First();
                 }
+                else
+                {
+                    errorMessage = ConfirmPassword.ErrorsMessages.First();
+                }
                 Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
             }
+
         }
 
     }

@@ -22,11 +22,10 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Margin="10,35,10,70">
-
-            <Label Text="Task list" HorizontalOptions="Center" FontSize="Large" />
-
-            <ListView x:Name="taskList" ItemsSource="{Binding TaskList}" />
+        <StackLayout Margin="10,35,10,70"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center">
+        <Label Text="TEST"/>
 
         </StackLayout>
     </ContentPage.Content>
