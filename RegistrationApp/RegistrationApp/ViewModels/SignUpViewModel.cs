@@ -139,7 +139,7 @@ namespace RegistrationApp.ViewModels
                 {
                     errorMessage = ConfirmPassword.ErrorsMessages.First();
                 }
-                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                await Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
                 return;
             }
 

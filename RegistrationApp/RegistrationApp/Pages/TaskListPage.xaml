@@ -21,11 +21,23 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+"
+                     Command="{Binding AddNewTaskCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Margin="10,35,10,70"
                      VerticalOptions="Center"
                      HorizontalOptions="Center">
-        <Label Text="TEST"/>
+
+            <ListView ItemsSource="{Binding UserTasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Description}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </StackLayout>
     </ContentPage.Content>

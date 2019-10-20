@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using RegistrationApp.Models;
 using RegistrationApp.Pages;
 using Xamarin.Forms;
@@ -24,7 +23,7 @@ namespace RegistrationApp.Autorization
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("ERROR", "Email already exists", "OK");
+                await Application.Current.MainPage.DisplayAlert("ERROR", "Email already exists", "OK");
             }
         }
 
