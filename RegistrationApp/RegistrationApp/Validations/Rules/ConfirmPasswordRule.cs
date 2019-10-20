@@ -13,8 +13,6 @@ namespace RegistrationApp.Validations.Rules
             _confirmMethod = getPassword;
         }
 
-        delegate ValidatableObject<string> ValuePass();
-
         public bool Check(string value)
         {
             return string.Equals(_confirmMethod?.Invoke(), value);

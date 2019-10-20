@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
+using RegistrationApp.Autorization;
+using RegistrationApp.Models;
 using RegistrationApp.Validations;
 using RegistrationApp.Validations.Rules;
 using Xamarin.Forms;
@@ -63,7 +66,7 @@ namespace RegistrationApp.ViewModels
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
-                    new EmailRule()
+                    new EmailRule(),
                 }
             };
 
@@ -90,9 +93,34 @@ namespace RegistrationApp.ViewModels
         private async void OnAddPhoto()
         {
             System.Diagnostics.Debug.WriteLine("Add photo");
+
+
+            #region FOR DEBUG
+            List<User> _testAllUsersList = await App.UserDatabase.GetAllUsersAsync();
+            List<UserTask> _testAllUserTasksList = await App.UserDatabase.GetAllUserTasksAsync();
+
+            foreach (User user in _testAllUsersList)
+            {
+                System.Diagnostics.Debug.WriteLine($"------------------------------------");
+                System.Diagnostics.Debug.WriteLine($"User info : {user.ToString()}");
+                var _testUserTasksList = _testAllUserTasksList.Where(ut => ut.UserID == user.ID);
+                foreach (UserTask userTask in _testUserTasksList)
+                {
+                    System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
+                }
+                System.Diagnostics.Debug.WriteLine($"------------------------------------");
+            }
+
+            //System.Diagnostics.Debug.WriteLine($"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$");
+
+            //foreach (UserTask userTask in _testAllUserTasksList)
+            //{
+            //    System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
+            //}
+            #endregion
         }
 
-        private void OnCreateAccauntCommand()
+        private async void OnCreateAccauntCommand()
         {
             System.Diagnostics.Debug.WriteLine("Create accaunt");
 
@@ -111,9 +139,13 @@ namespace RegistrationApp.ViewModels
                 {
                     errorMessage = ConfirmPassword.ErrorsMessages.First();
                 }
-                Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                await Application.Current.MainPage.DisplayAlert("ERROR", errorMessage, "OK");
+                return;
             }
 
+            var _newUser = new User(Email.Value, FirstName, LastName, Password.Value, Phone);
+
+            AutorizationService.SignUpUserAsync(_newUser);
         }
 
     }

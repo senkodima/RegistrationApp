@@ -39,7 +39,8 @@ namespace RegistrationApp.ViewModels
                 {
                     new IsNotNullOrEmptyRule(),
                     new EmailRule()
-                }
+                },
+                /*FOR TEST*/ Value = "Test@test.com"
             };
 
             Password = new ValidatableObject<string>
@@ -48,7 +49,8 @@ namespace RegistrationApp.ViewModels
                 {
                     new IsNotNullOrEmptyRule(),
                     new PasswordRule()
-                }
+                },
+                /*FOR TEST*/ Value = "123qweASD"
             };
         }
 
