@@ -7,6 +7,8 @@ namespace RegistrationApp.Autorization
 {
     public static class AutorizationService
     {
+        private static User _currentUser;
+
         public static bool CheckEmailUniqueness(string value)
         {
             var users = App.UserDatabase.GetAllUsersAsync().Result;
@@ -30,15 +32,18 @@ namespace RegistrationApp.Autorization
         public static bool CheckUserCredentials(User user)
         {
             var users = App.UserDatabase.GetAllUsersAsync().Result;
-            return (users.Where(u => u.Email == user.Email && u.Password == user.Password)
-                        .FirstOrDefault() != null);
+            _currentUser = users.Where(u => u.Email == user.Email
+                                         && u.Password == user.Password)
+                                        .FirstOrDefault();
+            
+            return _currentUser != null;
         }
 
         public static async void SignInUserAsync(User user)
         {
             if (CheckUserCredentials(user))
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new TaskListPage(user));
+                await Application.Current.MainPage.Navigation.PushAsync(new TaskListPage(_currentUser));
             }
             else
             {

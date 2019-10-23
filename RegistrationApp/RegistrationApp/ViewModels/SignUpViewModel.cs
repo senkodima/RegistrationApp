@@ -66,7 +66,7 @@ namespace RegistrationApp.ViewModels
                 ValidationsRules =
                 {
                     new IsNotNullOrEmptyRule(),
-                    new EmailRule(),
+                    new EmailRule()
                 }
             };
 
@@ -111,12 +111,12 @@ namespace RegistrationApp.ViewModels
                 System.Diagnostics.Debug.WriteLine($"------------------------------------");
             }
 
-            //System.Diagnostics.Debug.WriteLine($"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$");
+            System.Diagnostics.Debug.WriteLine($"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$");
 
-            //foreach (UserTask userTask in _testAllUserTasksList)
-            //{
-            //    System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
-            //}
+            foreach (UserTask userTask in _testAllUserTasksList)
+            {
+                System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
+            }
             #endregion
         }
 

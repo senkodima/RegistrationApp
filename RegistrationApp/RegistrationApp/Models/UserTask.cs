@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using System;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace RegistrationApp.Models
@@ -9,6 +10,7 @@ namespace RegistrationApp.Models
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string Description { get; set; }
+        public DateTime Date { get; set; }
 
         [ForeignKey(typeof(User))]
         public int UserID { get; set; }

@@ -31,10 +31,12 @@
                      VerticalOptions="Center"
                      HorizontalOptions="Center">
 
-            <ListView ItemsSource="{Binding UserTasks}">
+            <ListView SelectionMode="None"
+                      ItemsSource="{Binding UserTasks}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Description}" />
+                        <TextCell Text="{Binding Description}"
+                                  Detail="{Binding Date}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
