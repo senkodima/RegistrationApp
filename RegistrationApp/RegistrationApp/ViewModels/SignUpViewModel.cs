@@ -99,23 +99,36 @@ namespace RegistrationApp.ViewModels
             List<User> _testAllUsersList = await App.UserDatabase.GetAllUsersAsync();
             List<UserTask> _testAllUserTasksList = await App.UserDatabase.GetAllUserTasksAsync();
 
+            /*DISPLAY ALL USERS AND THEIR ALL TASKS*/
             foreach (User user in _testAllUsersList)
             {
-                System.Diagnostics.Debug.WriteLine($"------------------------------------");
+                System.Diagnostics.Debug.WriteLine($"------------------------------------" +
+                                                   $"------------------------------------");
                 System.Diagnostics.Debug.WriteLine($"User info : {user.ToString()}");
                 var _testUserTasksList = _testAllUserTasksList.Where(ut => ut.UserID == user.ID);
                 foreach (UserTask userTask in _testUserTasksList)
                 {
-                    System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
+                    System.Diagnostics.Debug.WriteLine($"Task info : {userTask.ToString()}");
                 }
-                System.Diagnostics.Debug.WriteLine($"------------------------------------");
+                System.Diagnostics.Debug.WriteLine($"------------------------------------" +
+                                                   $"------------------------------------");
             }
 
-            System.Diagnostics.Debug.WriteLine($"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$");
+            /*DISPLAY ALL TASKS*/
+            //System.Diagnostics.Debug.WriteLine($"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$" +
+            //                                   $"-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$");
+            //foreach (UserTask userTask in _testAllUserTasksList)
+            //{
+            //    System.Diagnostics.Debug.WriteLine($"Task info : {userTask.ToString()}");
+            //}
 
-            foreach (UserTask userTask in _testAllUserTasksList)
+            /*DISPLAY ALL TASKS THAT DOESN'T ASSIGN TO ANY USER*/
+            System.Diagnostics.Debug.WriteLine($"-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!" +
+                                               $"-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!");
+            var _testNotUserTasksList = _testAllUserTasksList.Where(ut => ut.UserID == 0);
+            foreach (UserTask userTask in _testNotUserTasksList)
             {
-                System.Diagnostics.Debug.WriteLine($"UserTasks info : {userTask.ToString()}");
+                System.Diagnostics.Debug.WriteLine($"Task info : {userTask.ToString()}");
             }
             #endregion
         }

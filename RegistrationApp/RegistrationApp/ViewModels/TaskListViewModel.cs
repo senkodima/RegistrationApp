@@ -38,25 +38,24 @@ namespace RegistrationApp.ViewModels
             UserTasks = new ObservableCollection<UserTask>();
             foreach (UserTask ut in CurrentUser.Tasks)
             {
-                UserTasks.Add(ut);
+                UserTasks.Insert(0, ut);
             }
         }
 
         private async void OnAddNewTaskCommand()
         {
-            Random random = new Random();
             var _newUserTask = new UserTask()
             {
-                Description = $"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")} test task {random.Next()}",
+                Description = $"test task {App.UserDatabase.GetAllUserTasksAsync().Result.Count + 1}",
                 Date = DateTime.Now
             };
 
-            App.UserDatabase.SaveUserTaskAsync(_newUserTask);
+            await App.UserDatabase.SaveUserTaskAsync(_newUserTask);
 
             CurrentUser.Tasks.Add(_newUserTask);
-            App.UserDatabase.UpdateUserAsync(CurrentUser);
+            await App.UserDatabase.UpdateUserAsync(CurrentUser);
 
-            UserTasks.Add(_newUserTask);
+            UserTasks.Insert(0, _newUserTask);
         }
     }
 }

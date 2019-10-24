@@ -23,9 +23,9 @@ namespace RegistrationApp.Models
         #region FOR DEBUG
         public override string ToString()
         {
-            return $"\n\t ID: {ID}" +
-                   $"\n\t Description: {Description}" +
-                   $"\n\t UserID: {UserID}";
+            return $"\n   ID:          {ID}" +
+                   $"\n   Description: {Description}" +
+                   $"\n   UserID:      {UserID}";
         }
         #endregion
     }

@@ -39,12 +39,12 @@ namespace RegistrationApp.Models
         #region FOR DEBUG
         public override string ToString()
         {
-            return $"\n\t ID: {ID}" +
-                   $"\n\t Email: {Email}" +
-                   $"\n\t FirstName: {FirstName}" +
-                   $"\n\t LastName: {LastName}" +
-                   $"\n\t Password: {Password}" +
-                   $"\n\t Phone: {Phone}";
+            return $"\n   ID:       {ID}" +
+                   $"\n   Email:    {Email}" +
+                   $"\n   FirstName:{FirstName}" +
+                   $"\n   LastName: {LastName}" +
+                   $"\n   Password: {Password}" +
+                   $"\n   Phone:    {Phone}";
         }
         #endregion
     }
