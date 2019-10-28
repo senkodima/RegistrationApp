@@ -18,8 +18,8 @@ namespace RegistrationApp.ViewModels
             set { SetField(ref _currentUser, value); }
         }
 
-        private ObservableCollection<UserTask> _userTasks;
-        public ObservableCollection<UserTask> UserTasks
+        private ObservableCollection<UserTaskViewModel> _userTasks;
+        public ObservableCollection<UserTaskViewModel> UserTasks
         {
             get { return _userTasks; }
             set { SetField(ref _userTasks, value); }
@@ -35,11 +35,9 @@ namespace RegistrationApp.ViewModels
             CurrentUser.Tasks = (allTasks.Where(ut => ut.UserID == CurrentUser.ID))
                                             .ToList();
 
-            UserTasks = new ObservableCollection<UserTask>();
-            foreach (UserTask ut in CurrentUser.Tasks)
-            {
-                UserTasks.Insert(0, ut);
-            }
+            var currentUserTasks = CurrentUser.Tasks.Select(t => new UserTaskViewModel(t, this)).Reverse();
+
+            UserTasks = new ObservableCollection<UserTaskViewModel>(currentUserTasks);
         }
 
         private async void OnAddNewTaskCommand()
@@ -55,7 +53,7 @@ namespace RegistrationApp.ViewModels
             CurrentUser.Tasks.Add(_newUserTask);
             await App.UserDatabase.UpdateUserAsync(CurrentUser);
 
-            UserTasks.Insert(0, _newUserTask);
+            UserTasks.Insert(0, new UserTaskViewModel(_newUserTask, this));
         }
     }
 }

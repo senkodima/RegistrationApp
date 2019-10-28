@@ -33,12 +33,43 @@
 
             <ListView SelectionMode="None"
                       ItemsSource="{Binding UserTasks}">
-                <ListView.ItemTemplate>
+                <ListView.ItemTemplate>  
                     <DataTemplate>
-                        <TextCell Text="{Binding Description}"
-                                  Detail="{Binding Date}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                        <ViewCell>
+                            <Grid Margin="20, 0, 0, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Description}"
+                                       FontAttributes="Bold"
+                                       LineBreakMode="TailTruncation"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="End"
+                                       Grid.Row="0"
+                                       Grid.Column="0"/>
+                                <Label Text="{Binding Date}"
+                                       FontSize="Micro"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Start"
+                                       Grid.Row="1"
+                                       Grid.Column="0"/>
+                                <Button Text="DEL"
+                                        Style="{StaticResource buttonStyle}"
+                                        Command="{Binding DeleteTaskCommand}"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"
+                                        Padding="10"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>  
+                </ListView.ItemTemplate>  
             </ListView>
 
         </StackLayout>
