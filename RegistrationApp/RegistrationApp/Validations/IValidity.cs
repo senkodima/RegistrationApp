@@ -1,5 +1,4 @@
-﻿using System;
-namespace RegistrationApp.Validations
+﻿namespace RegistrationApp.Validations
 {
     public interface IValidity
     {

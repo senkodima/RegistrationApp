@@ -1,5 +1,4 @@
-﻿using System;
-namespace RegistrationApp.Validations.Rules
+﻿namespace RegistrationApp.Validations.Rules
 {
     public class IsNotNullOrEmptyRule : IValidationRule<string>
     {
